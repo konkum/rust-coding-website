@@ -26,7 +26,7 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
         }
     }
     unreachable!();
-}
+} // Two Sum problem
 
 pub fn is_palindrome(x: i32) -> bool {
     if x < 0 {
@@ -39,7 +39,7 @@ pub fn is_palindrome(x: i32) -> bool {
         temp = temp / 10;
     }
     return reverse == x;
-}
+}//Palindrome Number problem
 
 pub fn roman_to_int(s: String) -> i32 {
     let roman_lib: HashMap<char, i32> = HashMap::from([
@@ -68,7 +68,7 @@ pub fn roman_to_int(s: String) -> i32 {
         }
     }
     return sum;
-}
+}//Roman to Integer problem
 
 pub fn longest_common_prefix(strs: Vec<String>) -> String {
     fn lcp_inplace(mut s1: String, s2: &str) -> String {
@@ -87,7 +87,7 @@ pub fn longest_common_prefix(strs: Vec<String>) -> String {
     } else {
         String::from("")
     }
-}
+}//Longest Common Prefix problem
 
 fn is_valid(s: String) -> bool {
     let mut stack = Vec::new();
@@ -108,7 +108,7 @@ fn is_valid(s: String) -> bool {
     }
 
     stack.is_empty()
-}
+}//Valid Parentheses problem
 
 pub fn merge_two_lists(mut list1: Option<Box<ListNode>>, mut list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
     let mut dummy = None;
@@ -128,4 +128,4 @@ pub fn merge_two_lists(mut list1: Option<Box<ListNode>>, mut list2: Option<Box<L
 
     mem::swap(p_next, if list1.is_none() { &mut list2 } else { &mut list1 });
     dummy
-}
+}//Merge Two Sorted Lists problem

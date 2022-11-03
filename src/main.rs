@@ -5,5 +5,5 @@ pub mod leetcode;
 pub mod project_euler;
 
 fn main() {
-    largest_prime_factor();
+    _10001st_prime();
 }

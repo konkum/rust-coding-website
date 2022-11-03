@@ -83,3 +83,58 @@ pub fn largest_prime_factor() {
     }
     println!("{}", result);
 }
+
+pub fn largest_palindrome_product() {
+    fn is_palindrome(x: i32) -> bool {
+        if x < 0 {
+            return false;
+        }
+        let mut reverse = 0;
+        let mut temp = x;
+        while temp != 0 {
+            reverse = (reverse * 10) + (temp % 10);
+            temp = temp / 10;
+        }
+        return reverse == x;
+    }
+    let mut palindrome = 0;
+    'outer: for i in (900..1000).rev() {
+        for j in (900..i).rev() {
+            palindrome = i * j;
+            if is_palindrome(palindrome) {
+                break 'outer;
+            }
+        }
+    }
+    println!("{}", palindrome);
+}
+
+pub fn _10001st_prime() {
+    fn is_prime(num: i64) -> bool {
+        if num < 2 {
+            return false;
+        }
+        if num % 2 == 0 {
+            return num == 2;
+        }
+        let mut root = (num as f64).sqrt() as i64;
+        for i in (3..=root).step_by(2) {
+            if num % i == 0 {
+                return false;
+            }
+        }
+        return true;
+    }
+    let mut prime = 3;
+    let mut i = 2;
+    loop {
+        prime += 2;
+        if is_prime(prime) {
+            i += 1;
+            if i == 10001 {
+                break;
+            }
+        }
+    }
+    println!("{}", prime);
+}
