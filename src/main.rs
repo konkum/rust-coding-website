@@ -1,3 +1,9 @@
+use crate::leetcode::*;
+use crate::project_euler::*;
+
+pub mod leetcode;
+pub mod project_euler;
+
 fn main() {
-    println!("Hello, world!");
+    largest_prime_factor();
 }
