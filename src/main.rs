@@ -10,7 +10,7 @@ fn main() {
     let now = Instant::now();
 
     // Code block to measure.
-    println!("{}", roman_to_int("IV".to_string()));
+    // print!("{}", delete_duplicates(ListNode::new(0).next));
 
     let elapsed = now.elapsed();
     println!("Elapsed: {:.2?}", elapsed);

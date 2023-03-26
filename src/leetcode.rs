@@ -154,3 +154,39 @@ pub fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
     }
     return cnt as i32;
 } //Remove Element Problem
+
+pub fn climb_stairs(n: i32) -> i32 {
+    if n == 1 {
+        return 1;
+    }
+
+    let mut first = 1;
+    let mut second = 2;
+    let range = n + 1;
+
+    for i in 3..range {
+        let third = first + second;
+        first = second;
+        second = third;
+    }
+
+    return second;
+} // Climbing stairs problem
+
+pub fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    let mut result = ListNode::new(0);
+    let mut result_list_iterator = &mut result;
+    let mut input_list_iterator = head.as_ref();
+    let mut previous_val = i32::MIN;
+
+    while let Some(node) = input_list_iterator {
+        if node.val != previous_val {
+            result_list_iterator.next = Some(Box::new(ListNode::new(node.val)));
+            result_list_iterator = result_list_iterator.next.as_mut().unwrap();
+            previous_val = node.val;
+        }
+        input_list_iterator = node.next.as_ref();
+    }
+
+    return result.next;
+} // Remove Duplicate from Sorted List
