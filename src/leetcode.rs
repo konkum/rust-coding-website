@@ -10,10 +10,7 @@ pub struct ListNode {
 impl ListNode {
     #[inline]
     fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
+        ListNode { next: None, val }
     }
 }
 
@@ -39,7 +36,7 @@ pub fn is_palindrome(x: i32) -> bool {
         temp = temp / 10;
     }
     return reverse == x;
-}//Palindrome Number problem
+} //Palindrome Number problem
 
 pub fn roman_to_int(s: String) -> i32 {
     let roman_lib: HashMap<char, i32> = HashMap::from([
@@ -68,7 +65,7 @@ pub fn roman_to_int(s: String) -> i32 {
         }
     }
     return sum;
-}//Roman to Integer problem
+} //Roman to Integer problem
 
 pub fn longest_common_prefix(strs: Vec<String>) -> String {
     fn lcp_inplace(mut s1: String, s2: &str) -> String {
@@ -83,11 +80,13 @@ pub fn longest_common_prefix(strs: Vec<String>) -> String {
         s1
     }
     if strs.len() > 0 {
-        strs.iter().skip(1).fold(strs[0].clone(), |acc, x| lcp_inplace(acc, &x))
+        strs.iter()
+            .skip(1)
+            .fold(strs[0].clone(), |acc, x| lcp_inplace(acc, &x))
     } else {
         String::from("")
     }
-}//Longest Common Prefix problem
+} //Longest Common Prefix problem
 
 fn is_valid(s: String) -> bool {
     let mut stack = Vec::new();
@@ -108,9 +107,12 @@ fn is_valid(s: String) -> bool {
     }
 
     stack.is_empty()
-}//Valid Parentheses problem
+} //Valid Parentheses problem
 
-pub fn merge_two_lists(mut list1: Option<Box<ListNode>>, mut list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+pub fn merge_two_lists(
+    mut list1: Option<Box<ListNode>>,
+    mut list2: Option<Box<ListNode>>,
+) -> Option<Box<ListNode>> {
     let mut dummy = None;
     let mut p_next = &mut dummy;
 
@@ -119,13 +121,36 @@ pub fn merge_two_lists(mut list1: Option<Box<ListNode>>, mut list2: Option<Box<L
         let ltwo = &mut list2;
         let l = if lone.as_ref().unwrap().val < ltwo.as_ref().unwrap().val {
             lone
-        } else { ltwo };
+        } else {
+            ltwo
+        };
 
         mem::swap(p_next, l);
         mem::swap(l, &mut p_next.as_mut().unwrap().next);
         p_next = &mut p_next.as_mut().unwrap().next;
     }
 
-    mem::swap(p_next, if list1.is_none() { &mut list2 } else { &mut list1 });
+    mem::swap(
+        p_next,
+        if list1.is_none() {
+            &mut list2
+        } else {
+            &mut list1
+        },
+    );
     dummy
-}//Merge Two Sorted Lists problem
+} //Merge Two Sorted Lists problem
+
+pub fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
+    let mut cnt = nums.len();
+    let mut idx = 0;
+    while idx < cnt {
+        if nums[idx] == val {
+            nums.swap(idx, cnt - 1);
+            cnt -= 1;
+            continue;
+        }
+        idx += 1;
+    }
+    return cnt as i32;
+} //Remove Element Problem

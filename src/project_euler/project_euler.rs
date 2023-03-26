@@ -1,3 +1,5 @@
+use std::fs;
+
 pub fn multiples_of_3_or_5() {
     let mut sum = 0;
     for i in 1..1000 {
@@ -63,7 +65,7 @@ pub fn largest_prime_factor() {
         if num % 2 == 0 {
             return num == 2;
         }
-        let mut root = (num as f64).sqrt() as i64;
+        let root = (num as f64).sqrt() as i64;
         for i in (3..=root).step_by(2) {
             if num % i == 0 {
                 return false;
@@ -117,7 +119,7 @@ pub fn _10001st_prime() {
         if num % 2 == 0 {
             return num == 2;
         }
-        let mut root = (num as f64).sqrt() as i64;
+        let root = (num as f64).sqrt() as i64;
         for i in (3..=root).step_by(2) {
             if num % i == 0 {
                 return false;
@@ -137,4 +139,92 @@ pub fn _10001st_prime() {
         }
     }
     println!("{}", prime);
+}
+
+pub fn summation_of_primes() {
+    fn is_prime(num: i64) -> bool {
+        if num < 2 {
+            return false;
+        }
+        if num % 2 == 0 {
+            return num == 2;
+        }
+        let root = (num as f64).sqrt() as i64;
+        for i in (3..=root).step_by(2) {
+            if num % i == 0 {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    let mut sum = 2;
+    for i in (3..2000000).step_by(2) {
+        if is_prime(i) {
+            sum += i;
+        }
+    }
+    println!("{}", sum);
+}
+
+pub fn power_digit_sum() {
+    let mut decimal = vec![1];
+    for _ in 0..1000 {
+        let mut carry = 0;
+        for i in 0..decimal.len() {
+            let mut digit = decimal[i];
+            digit = 2 * digit + carry;
+            carry = digit / 10;
+            decimal[i] = digit % 10;
+        }
+        if carry > 0 {
+            decimal.push(carry);
+        }
+    }
+    println!("{}", decimal.iter().sum::<u64>());
+}
+
+pub fn longest_collatz_sequence() {
+    let mut result = 0;
+    let mut count_result = 0;
+    for i in 2..1000000 {
+        let mut num: i64 = i;
+        let mut count = 0;
+        loop {
+            if num == 1 {
+                break;
+            }
+            if num % 2 == 0 {
+                count += 1;
+                num /= 2;
+                continue;
+            } else {
+                count += 2;
+                num = (3 * num + 1) / 2;
+                continue;
+            }
+        }
+        if count_result < count {
+            result = i;
+            count_result = count;
+        }
+    }
+    println!("number {result} : count {count_result}");
+}
+
+pub fn large_sum() {
+    let mut sum: f64 = 0_f64;
+    let content =
+        fs::read_to_string("src/project_euler/input/large_sum.data")
+            .unwrap();
+    let mut x = 0;
+    for line in content.lines() {
+        let num: f64 = line.parse().unwrap();
+        sum = sum + num;
+        x = x + 1;
+        if x > 98 {
+            break;
+        }
+    }
+    println!("{}", sum)
 }
