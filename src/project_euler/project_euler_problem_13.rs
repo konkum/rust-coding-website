@@ -10,9 +10,10 @@ pub fn large_sum() {
         let num: f64 = line.parse().unwrap();
         sum = sum + num;
         x = x + 1;
-        if x > 98 {
+        if x > 99 {
             break;
         }
     }
-    println!("{}", sum)
+    println!("{}", sum);
+    //5537376230390877000000000000000000000000000000000000
 }

@@ -1,7 +1,7 @@
 pub fn longest_collatz_sequence() {
     let mut result = 0;
     let mut count_result = 0;
-    for i in 2..1000000 {
+    for _ in 2..1000000 {
         let mut num: i64 = i;
         let mut count = 0;
         loop {
